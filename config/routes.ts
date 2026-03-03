@@ -42,6 +42,23 @@
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
 	},
+	{
+        path: '/san-pham',
+        name: 'Quản lý sản phẩm',
+        component: './SanPham',
+    },
+	{
+	path: '/bai1',
+	name: 'Bài 1 - Đoán số',
+	icon: 'SmileOutlined',
+	component: './Bai1',
+},
+{
+	path: '/bai2',
+	name: 'Bài 2 - Quản lý học tập',
+	icon: 'BookOutlined',
+	component: './Bai2',
+},
 
 	// DANH MUC HE THONG
 	// {
@@ -82,6 +99,7 @@
 	{
 		path: '/',
 	},
+
 	{
 		path: '/403',
 		component: './exception/403/403Page',
@@ -95,4 +113,5 @@
 	{
 		component: './exception/404',
 	},
+
 ];
