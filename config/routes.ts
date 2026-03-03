@@ -16,8 +16,6 @@
 		],
 	},
 
-	///////////////////////////////////
-	// DEFAULT MENU
 	{
 		path: '/dashboard',
 		name: 'Dashboard',
@@ -43,61 +41,39 @@
 		component: './TodoList',
 	},
 	{
-        path: '/san-pham',
-        name: 'Quản lý sản phẩm',
-        component: './SanPham',
-    },
+		path: '/bai1',
+		name: 'Bài 1 - Đoán số',
+		icon: 'SmileOutlined',
+		component: './Bai1',
+	},
 	{
-	path: '/bai1',
-	name: 'Bài 1 - Đoán số',
-	icon: 'SmileOutlined',
-	component: './Bai1',
-},
-{
-	path: '/bai2',
-	name: 'Bài 2 - Quản lý học tập',
-	icon: 'BookOutlined',
-	component: './Bai2',
-},
-
-	// DANH MUC HE THONG
-	// {
-	// 	name: 'DanhMuc',
-	// 	path: '/danh-muc',
-	// 	icon: 'copy',
-	// 	routes: [
-	// 		{
-	// 			name: 'ChucVu',
-	// 			path: 'chuc-vu',
-	// 			component: './DanhMuc/ChucVu',
-	// 		},
-	// 	],
-	// },
+		path: '/bai2',
+		name: 'Bài 2 - Quản lý học tập',
+		icon: 'BookOutlined',
+		component: './Bai2',
+	},
 
 	{
 		path: '/notification',
+		layout: false,
+		hideInMenu: true,
 		routes: [
 			{
-				path: './subscribe',
+				path: '/notification/subscribe',
 				exact: true,
 				component: './ThongBao/Subscribe',
 			},
 			{
-				path: './check',
+				path: '/notification/check',
 				exact: true,
 				component: './ThongBao/Check',
 			},
 			{
-				path: './',
+				path: '/notification',
 				exact: true,
 				component: './ThongBao/NotifOneSignal',
 			},
 		],
-		layout: false,
-		hideInMenu: true,
-	},
-	{
-		path: '/',
 	},
 
 	{
@@ -113,5 +89,4 @@
 	{
 		component: './exception/404',
 	},
-
 ];

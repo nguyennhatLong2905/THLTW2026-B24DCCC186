@@ -286,4 +286,4 @@ const Bai2: React.FC = () => {
   )
 }
 
-export default Bai2
+export default Bai2 
