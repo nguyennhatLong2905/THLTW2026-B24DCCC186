@@ -65,7 +65,7 @@ const Bai1: React.FC = () => {
         <h3>Luật chơi:</h3>
         <ul>
           <li>Hệ thống sẽ tạo ngẫu nhiên một số từ 1 đến 100.</li>
-          <li>Bạn có 10 lượt để đoán số đó.</li>
+          <li>Bạn sẽ có 10 lượt để đoán số đó.</li>
           <li>
             Sau mỗi lần đoán, hệ thống sẽ cho biết số bạn nhập
             lớn hơn hay nhỏ hơn.

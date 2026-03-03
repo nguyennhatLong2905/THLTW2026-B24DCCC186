@@ -231,7 +231,7 @@ const Bai2: React.FC = () => {
                       borderRadius: "50px", fontWeight: "800", fontSize: "14px",
                       boxShadow: "0 4px 15px rgba(0, 123, 255, 0.3)",
                       animation: "fadeInUp 0.3s ease-out"
-                    }}>CHỌN MÔN</span>
+                    }}>CHỌN</span>
                   </div>
                 )}
 
