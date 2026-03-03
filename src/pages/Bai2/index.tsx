@@ -258,7 +258,7 @@ const Bai2: React.FC = () => {
           <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
             <div style={{ backgroundColor: "white", padding: "30px", borderRadius: "20px", boxShadow: "0 4px 6px rgba(0,0,0,0.05)" }}>
               <h3 style={{ marginTop: 0, marginBottom: "20px", fontSize: "20px", fontWeight: "700", color: "#111827" }}>
-                🎯 Thiết lập mục tiêu: {monHocDangChon ? <span style={{color: "#007bff"}}>{monHocHienTai?.ten}</span> : <span style={{color: "#9ca3af", fontStyle: "italic", fontWeight: "400"}}>vui lòng chọn môn</span>}
+                 Thiết lập mục tiêu: {monHocDangChon ? <span style={{color: "#007bff"}}>{monHocHienTai?.ten}</span> : <span style={{color: "#9ca3af", fontStyle: "italic", fontWeight: "400"}}>vui lòng chọn môn</span>}
               </h3>
               <div style={{ display: "flex", gap: "12px" }}>
                 <input 

@@ -60,7 +60,6 @@ const Bai1: React.FC = () => {
     <div style={{ padding: 20 }}>
       <h1>Trò chơi đoán số (1 - 100)</h1>
 
-      {/* Hiển thị luật chơi */}
       <div style={{ marginBottom: 20 }}>
         <h3>Luật chơi:</h3>
         <ul>
