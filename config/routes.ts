@@ -42,7 +42,18 @@
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
 	},
-
+	{
+        path: '/Bai1',
+        name: 'Bài 1 - Oẳn Tù Tì',
+        icon: 'SmileOutlined',
+        component: './Bai1',
+    },
+	{
+	path: '/Bai2',
+	name: 'Bài 2 - Ngân hàng câu hỏi',
+	icon: 'BookOutlined',
+	component: './Bai2',
+    },
 	// DANH MUC HE THONG
 	// {
 	// 	name: 'DanhMuc',
