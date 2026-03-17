@@ -42,6 +42,12 @@
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
 	},
+	{
+		path: '/Bai1',
+		name: 'Bai1TH03 - Đặt lịch hẹn',
+		icon: 'BookOutlined',
+		component: './Bai1TH03',
+	},
 
 	// DANH MUC HE THONG
 	// {
