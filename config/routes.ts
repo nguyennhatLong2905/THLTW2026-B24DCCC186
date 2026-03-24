@@ -42,6 +42,11 @@
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
 	},
+	{
+		path: '/TH04',
+		name: 'Quản lí bằng tốt nghiệp',
+		component: './TH04',
+	},
 
 	// DANH MUC HE THONG
 	// {
