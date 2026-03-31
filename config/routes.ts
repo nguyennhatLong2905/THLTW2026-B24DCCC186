@@ -1,4 +1,6 @@
-﻿export default [
+﻿import component from "@/locales/en-US/component";
+
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -41,6 +43,37 @@
 		name: 'TodoList',
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
+	},
+	{
+		path: '/th05',
+		name: 'TH05',
+		icon: 'TeamOutlined',
+		routes: [
+		{
+			path: '/th05/cau-lac-bo',
+			name: 'CauLacBo',
+			component: './TH05/CauLacBo',
+		},
+		{
+			path: '/th05/don-dang-ky',
+			name: 'DonDangKy',
+			component: './TH05/DonDangKy',
+		},
+		{
+			path: '/th05/thanh-vien',
+			name: 'ThanhVien',
+			component: './TH05/ThanhVien',
+		},
+		{
+			path: '/th05/bao-cao',
+			name: 'BaoCao',
+			component: './TH05/BaoCao',
+		},
+		{
+			path: '/th05',
+			redirect: '/th05/cau-lac-bo',
+		},
+	],
 	},
 
 	// DANH MUC HE THONG

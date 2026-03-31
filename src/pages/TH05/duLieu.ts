@@ -1,0 +1,51 @@
+export const dsCauLacBoMacDinh = [
+    {
+        id: 1,
+        anh: '',
+        ten: 'CLB Lập trình',
+        ngayThanhLap: '2022-09-10',
+        moTa: '<b>CLB dành cho sinh viên yêu thích code</b>',
+        chuNhiem: 'Nguyễn Văn A',
+        hoatDong: true,
+    },
+    {
+        id: 2,
+        anh: '',
+        ten: 'CLB Tiếng Anh',
+        ngayThanhLap: '2021-03-15',
+        moTa: '<i>Rèn luyện kỹ năng giao tiếp tiếng Anh</i>',
+        chuNhiem: 'Trần Thị B',
+        hoatDong: true,
+    },
+]
+
+export const dsDonMacDinh = [
+    {
+        id: 1,
+        hoTen: 'Lê Minh Long',
+        email: 'long@gmail.com',
+        sdt: '0988888888',
+        gioiTinh: 'Nam',
+        diaChi: 'Hà Nội',
+        soTruong: 'Java, React',
+        cauLacBoId: 1,
+        lyDo: 'Muốn học thêm kỹ năng lập trình',
+        trangThai: 'Pending',
+        ghiChu: '',
+        lichSu: [],
+    },
+    {
+        id: 2,
+        hoTen: 'Phạm Thị Lan',
+        email: 'lan@gmail.com',
+        sdt: '0977777777',
+        gioiTinh: 'Nữ',
+        diaChi: 'Nam Định',
+        soTruong: 'Giao tiếp, MC',
+        cauLacBoId: 2,
+        lyDo: 'Muốn phát triển tiếng Anh',
+        trangThai: 'Approved',
+        ghiChu: '',
+        lichSu: [],
+    },
+]

@@ -1,8 +1,10 @@
-import menu from './vi-VN/menu';
-import pages from './vi-VN/pages';
-
 export default {
-	'app.copyright.produced': 'RIPT',
-	...menu,
-	...pages,
+  'menu.dashboard': 'Dashboard',
+  'menu.RandomUser': 'RandomUser',
+  'menu.TodoList': 'TodoList',
+  'menu.TH05': 'TH05',
+  'menu.TH05.CauLacBo': 'Câu lạc bộ',
+  'menu.TH05.DonDangKy': 'Đơn đăng ký',
+  'menu.TH05.ThanhVien': 'Thành viên',
+  'menu.TH05.BaoCao': 'Báo cáo',
 };
