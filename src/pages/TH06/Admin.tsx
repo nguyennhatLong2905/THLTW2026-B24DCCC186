@@ -23,6 +23,7 @@ import {
     RiseOutlined,
 } from '@ant-design/icons'
 import ModalDiemDen from './ModalDiemDen'
+import FormDiemDen from './FormDiemDen'
 import { useDuLich } from './context'
 
 const { Text } = Typography
@@ -35,6 +36,10 @@ export default function Admin() {
 
     const [mo, setMo] = useState(false)
     const [sua, setSua] = useState<any>(null)
+    const [hienForm, setHienForm] = useState(false)
+
+    console.log('Admin render, dsDiemDen:', dsDiemDen)
+    console.log('hienForm:', hienForm)
 
     const xoa = (ma: string) => {
         confirm({
@@ -44,6 +49,19 @@ export default function Admin() {
                 message.success('Đã xóa điểm đến')
             },
         })
+    }
+
+    const moForm = (item?: any) => {
+        console.log('moForm called, item:', item)
+        setSua(item || null)
+        setHienForm(true)
+        console.log('hienForm set to true')
+    }
+
+    const dongForm = () => {
+        console.log('dongForm called')
+        setSua(null)
+        setHienForm(false)
     }
 
     const tongTienThuVe = useMemo(() => {
@@ -222,10 +240,7 @@ export default function Admin() {
                         type="primary"
                         ghost
                         icon={<EditOutlined />}
-                        onClick={() => {
-                            setSua(r)
-                            setMo(true)
-                        }}
+                        onClick={() => moForm(r)}
                     >
                         Sửa
                     </Button>
@@ -238,207 +253,218 @@ export default function Admin() {
     ]
 
     return (
-        <Space direction="vertical" size="large" style={{ width: '100%' }}>
-            <Row gutter={[16, 16]}>
-                <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                        <Statistic
-                            title="Tổng điểm đến"
-                            value={dsDiemDen.length}
-                            prefix={<EnvironmentOutlined />}
-                        />
-                    </Card>
-                </Col>
-
-                <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                        <Statistic
-                            title="Lịch trình đã tạo"
-                            value={dsLichTrinh.length}
-                            prefix={<CalendarOutlined />}
-                        />
-                    </Card>
-                </Col>
-
-                <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                        <Statistic
-                            title="Tổng tiền thu về"
-                            value={tongTienThuVe}
-                            suffix="VNĐ"
-                            prefix={<DollarOutlined />}
-                        />
-                    </Card>
-                </Col>
-
-                <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                        <div style={{ fontSize: 14, color: '#8c8c8c', marginBottom: 8 }}>
-                            Địa điểm phổ biến nhất
-                        </div>
-                        <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.3 }}>
-                            {dsPhoBien.length > 0 ? dsPhoBien[0].ten : 'Chưa có'}
-                        </div>
-                        <div style={{ marginTop: 8, color: '#1677ff', fontWeight: 500 }}>
-                            {dsPhoBien.length > 0 ? `${dsPhoBien[0].soLuot} lượt` : '0 lượt'}
-                        </div>
-                    </Card>
-                </Col>
-            </Row>
-
-            <Row gutter={[16, 16]}>
-                <Col xs={24} lg={12}>
-                    <Card title="Thống kê loại hình điểm đến">
-                        <Space direction="vertical" style={{ width: '100%' }} size="middle">
-                            {thongKeLoai.length > 0 ? (
-                                thongKeLoai.map((item: any, index: number) => (
-                                    <div key={index}>
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                justifyContent: 'space-between',
-                                                marginBottom: 6,
-                                            }}
-                                        >
-                                            <Text strong>{item.loai}</Text>
-                                            <Text>{item.soLuong} điểm đến</Text>
-                                        </div>
-                                        <Progress
-                                            percent={Math.round(
-                                                (item.soLuong / Math.max(dsDiemDen.length, 1)) * 100,
-                                            )}
-                                        />
-                                    </div>
-                                ))
-                            ) : (
-                                <Text type="secondary">Chưa có dữ liệu</Text>
-                            )}
-                        </Space>
-                    </Card>
-                </Col>
-
-                <Col xs={24} lg={12}>
-                    <Card title="Thống kê doanh thu theo hạng mục">
-                        <Table
-                            pagination={false}
-                            size="small"
-                            rowKey="key"
-                            dataSource={thongKeHangMuc}
-                            columns={[
-                                {
-                                    title: 'Hạng mục',
-                                    dataIndex: 'hangMuc',
-                                    key: 'hangMuc',
-                                    render: (text: string) => <Text strong>{text}</Text>,
-                                },
-                                {
-                                    title: 'Số tiền',
-                                    dataIndex: 'soTien',
-                                    key: 'soTien',
-                                    render: (val: number) => `${Number(val || 0).toLocaleString()} VNĐ`,
-                                },
-                                {
-                                    title: 'Tỷ lệ',
-                                    key: 'tyLe',
-                                    render: (_: any, record: any) => {
-                                        const tyLe =
-                                            tongTienThuVe > 0
-                                                ? ((Number(record?.soTien || 0) / tongTienThuVe) * 100).toFixed(1)
-                                                : '0.0'
-                                        return `${tyLe}%`
-                                    },
-                                },
-                            ]}
-                        />
-                    </Card>
-                </Col>
-            </Row>
-
-            <Row gutter={[16, 16]}>
-                <Col xs={24} lg={12}>
-                    <Card title="Lịch trình được tạo theo tháng">
-                        <Table
-                            pagination={false}
-                            size="small"
-                            rowKey="key"
-                            dataSource={thongKeThang}
-                            columns={[
-                                {
-                                    title: 'Tháng',
-                                    dataIndex: 'thang',
-                                    key: 'thang',
-                                },
-                                {
-                                    title: 'Số lịch trình',
-                                    dataIndex: 'soLuong',
-                                    key: 'soLuong',
-                                    render: (val: number) => <Tag color="blue">{val}</Tag>,
-                                },
-                            ]}
-                        />
-                    </Card>
-                </Col>
-
-                <Col xs={24} lg={12}>
-                    <Card title="Top địa điểm phổ biến">
-                        <Table
-                            pagination={false}
-                            size="small"
-                            rowKey="ma"
-                            dataSource={dsPhoBien.slice(0, 10)}
-                            columns={[
-                                {
-                                    title: 'Tên địa điểm',
-                                    dataIndex: 'ten',
-                                    key: 'ten',
-                                },
-                                {
-                                    title: 'Số lượt',
-                                    dataIndex: 'soLuot',
-                                    key: 'soLuot',
-                                    render: (val: number) => (
-                                        <Tag color="purple" icon={<RiseOutlined />}>
-                                            {val}
-                                        </Tag>
-                                    ),
-                                },
-                            ]}
-                        />
-                    </Card>
-                </Col>
-            </Row>
-
-            <Card
-                title="Quản lý điểm đến"
-                extra={
-                    <Button
-                        type="primary"
-                        icon={<PlusOutlined />}
-                        onClick={() => {
-                            setSua(null)
-                            setMo(true)
-                        }}
-                    >
-                        Thêm điểm đến
-                    </Button>
-                }
-            >
-                <Table
-                    dataSource={dsDiemDen}
-                    columns={cotDiemDen}
-                    rowKey="ma"
-                    pagination={{ pageSize: 5 }}
-                    scroll={{ x: 1600 }}
+        <>
+            {hienForm ? (
+                <FormDiemDen
+                    ds={dsDiemDen}
+                    setDs={setDsDiemDen}
+                    sua={sua}
+                    onClose={dongForm}
                 />
-            </Card>
+            ) : (
+                <Space direction="vertical" size="large" style={{ width: '100%' }}>
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} sm={12} lg={6}>
+                            <Card>
+                                <Statistic
+                                    title="Tổng điểm đến"
+                                    value={dsDiemDen.length}
+                                    prefix={<EnvironmentOutlined />}
+                                />
+                            </Card>
+                        </Col>
 
-            <ModalDiemDen
-                mo={mo}
-                setMo={setMo}
-                ds={dsDiemDen}
-                setDs={setDsDiemDen}
-                sua={sua}
-            />
-        </Space>
+                        <Col xs={24} sm={12} lg={6}>
+                            <Card>
+                                <Statistic
+                                    title="Lịch trình đã tạo"
+                                    value={dsLichTrinh.length}
+                                    prefix={<CalendarOutlined />}
+                                />
+                            </Card>
+                        </Col>
+
+                        <Col xs={24} sm={12} lg={6}>
+                            <Card>
+                                <Statistic
+                                    title="Tổng tiền thu về"
+                                    value={tongTienThuVe}
+                                    suffix="VNĐ"
+                                    prefix={<DollarOutlined />}
+                                />
+                            </Card>
+                        </Col>
+
+                        <Col xs={24} sm={12} lg={6}>
+                            <Card>
+                                <div style={{ fontSize: 14, color: '#8c8c8c', marginBottom: 8 }}>
+                                    Địa điểm phổ biến nhất
+                                </div>
+                                <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.3 }}>
+                                    {dsPhoBien.length > 0 ? dsPhoBien[0].ten : 'Chưa có'}
+                                </div>
+                                <div style={{ marginTop: 8, color: '#1677ff', fontWeight: 500 }}>
+                                    {dsPhoBien.length > 0 ? `${dsPhoBien[0].soLuot} lượt` : '0 lượt'}
+                                </div>
+                            </Card>
+                        </Col>
+                    </Row>
+
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} lg={12}>
+                            <Card title="Thống kê loại hình điểm đến">
+                                <Space direction="vertical" style={{ width: '100%' }} size="middle">
+                                    {thongKeLoai.length > 0 ? (
+                                        thongKeLoai.map((item: any, index: number) => (
+                                            <div key={index}>
+                                                <div
+                                                    style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        marginBottom: 6,
+                                                    }}
+                                                >
+                                                    <Text strong>{item.loai}</Text>
+                                                    <Text>{item.soLuong} điểm đến</Text>
+                                                </div>
+                                                <Progress
+                                                    percent={Math.round(
+                                                        (item.soLuong / Math.max(dsDiemDen.length, 1)) * 100,
+                                                    )}
+                                                />
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <Text type="secondary">Chưa có dữ liệu</Text>
+                                    )}
+                                </Space>
+                            </Card>
+                        </Col>
+
+                        <Col xs={24} lg={12}>
+                            <Card title="Thống kê doanh thu theo hạng mục">
+                                <Table
+                                    pagination={false}
+                                    size="small"
+                                    rowKey="key"
+                                    dataSource={thongKeHangMuc}
+                                    columns={[
+                                        {
+                                            title: 'Hạng mục',
+                                            dataIndex: 'hangMuc',
+                                            key: 'hangMuc',
+                                            render: (text: string) => <Text strong>{text}</Text>,
+                                        },
+                                        {
+                                            title: 'Số tiền',
+                                            dataIndex: 'soTien',
+                                            key: 'soTien',
+                                            render: (val: number) => `${Number(val || 0).toLocaleString()} VNĐ`,
+                                        },
+                                        {
+                                            title: 'Tỷ lệ',
+                                            key: 'tyLe',
+                                            render: (_: any, record: any) => {
+                                                const tyLe =
+                                                    tongTienThuVe > 0
+                                                        ? ((Number(record?.soTien || 0) / tongTienThuVe) * 100).toFixed(1)
+                                                        : '0.0'
+                                                return `${tyLe}%`
+                                            },
+                                        },
+                                    ]}
+                                />
+                            </Card>
+                        </Col>
+                    </Row>
+
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} lg={12}>
+                            <Card title="Lịch trình được tạo theo tháng">
+                                <Table
+                                    pagination={false}
+                                    size="small"
+                                    rowKey="key"
+                                    dataSource={thongKeThang}
+                                    columns={[
+                                        {
+                                            title: 'Tháng',
+                                            dataIndex: 'thang',
+                                            key: 'thang',
+                                        },
+                                        {
+                                            title: 'Số lịch trình',
+                                            dataIndex: 'soLuong',
+                                            key: 'soLuong',
+                                            render: (val: number) => <Tag color="blue">{val}</Tag>,
+                                        },
+                                    ]}
+                                />
+                            </Card>
+                        </Col>
+
+                        <Col xs={24} lg={12}>
+                            <Card title="Top địa điểm phổ biến">
+                                <Table
+                                    pagination={false}
+                                    size="small"
+                                    rowKey="ma"
+                                    dataSource={dsPhoBien.slice(0, 10)}
+                                    columns={[
+                                        {
+                                            title: 'Tên địa điểm',
+                                            dataIndex: 'ten',
+                                            key: 'ten',
+                                        },
+                                        {
+                                            title: 'Số lượt',
+                                            dataIndex: 'soLuot',
+                                            key: 'soLuot',
+                                            render: (val: number) => (
+                                                <Tag color="purple" icon={<RiseOutlined />}>
+                                                    {val}
+                                                </Tag>
+                                            ),
+                                        },
+                                    ]}
+                                />
+                            </Card>
+                        </Col>
+                    </Row>
+
+                    <Card
+                        title="Quản lý điểm đến"
+                        extra={
+                            <Button
+                                type="primary"
+                                icon={<PlusOutlined />}
+                                onClick={() => {
+                                    setSua(null)
+                                    setHienForm(true)
+                                }}
+                            >
+                                Thêm điểm đến
+                            </Button>
+                        }
+                    >
+                        <Table
+                            dataSource={dsDiemDen}
+                            columns={cotDiemDen}
+                            rowKey="ma"
+                            pagination={{ pageSize: 5 }}
+                            scroll={{ x: 1600 }}
+                        />
+                    </Card>
+
+                    <ModalDiemDen
+                        mo={mo}
+                        setMo={setMo}
+                        ds={dsDiemDen}
+                        setDs={setDsDiemDen}
+                        sua={sua}
+                    />
+                </Space>
+            )}
+        </>
     )
 }
