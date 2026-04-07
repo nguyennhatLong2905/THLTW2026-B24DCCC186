@@ -15,9 +15,6 @@
 			},
 		],
 	},
-
-	///////////////////////////////////
-	// DEFAULT MENU
 	{
 		path: '/dashboard',
 		name: 'Dashboard',
@@ -42,36 +39,52 @@
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
 	},
-
-	// DANH MUC HE THONG
-	// {
-	// 	name: 'DanhMuc',
-	// 	path: '/danh-muc',
-	// 	icon: 'copy',
-	// 	routes: [
-	// 		{
-	// 			name: 'ChucVu',
-	// 			path: 'chuc-vu',
-	// 			component: './DanhMuc/ChucVu',
-	// 		},
-	// 	],
-	// },
-
+	{
+		path: '/th06',
+		name: 'TH06',
+		icon: 'EnvironmentOutlined',
+		routes: [
+			{
+				path: '/th06/trang-chu',
+				name: 'TrangChu',
+				component: './TH06/TrangChu',
+			},
+			{
+				path: '/th06/lich-trinh',
+				name: 'LichTrinh',
+				component: './TH06/LichTrinh',
+			},
+			{
+				path: '/th06/ngan-sach',
+				name: 'NganSach',
+				component: './TH06/NganSach',
+			},
+			{
+				path: '/th06/admin',
+				name: 'Admin',
+				component: './TH06/Admin',
+			},
+			{
+				path: '/th06',
+				redirect: '/th06/trang-chu',
+			},
+		],
+	},
 	{
 		path: '/notification',
 		routes: [
 			{
-				path: './subscribe',
+				path: '/notification/subscribe',
 				exact: true,
 				component: './ThongBao/Subscribe',
 			},
 			{
-				path: './check',
+				path: '/notification/check',
 				exact: true,
 				component: './ThongBao/Check',
 			},
 			{
-				path: './',
+				path: '/notification',
 				exact: true,
 				component: './ThongBao/NotifOneSignal',
 			},
@@ -81,6 +94,7 @@
 	},
 	{
 		path: '/',
+		redirect: '/dashboard',
 	},
 	{
 		path: '/403',
