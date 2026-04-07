@@ -23,15 +23,15 @@ import {
     RiseOutlined,
 } from '@ant-design/icons'
 import ModalDiemDen from './ModalDiemDen'
+import { useDuLich } from './context'
 
 const { Text } = Typography
 const { confirm } = Modal
 
-export default function Admin(props: any) {
-    const dsDiemDen = Array.isArray(props?.dsDiemDen) ? props.dsDiemDen : []
-    const setDsDiemDen =
-        typeof props?.setDsDiemDen === 'function' ? props.setDsDiemDen : () => {}
-    const dsLichTrinh = Array.isArray(props?.dsLichTrinh) ? props.dsLichTrinh : []
+export default function Admin() {
+    const { dsDiemDen: rawDsDiemDen, setDsDiemDen, dsLichTrinh: rawDsLichTrinh } = useDuLich()
+    const dsDiemDen = Array.isArray(rawDsDiemDen) ? rawDsDiemDen : []
+    const dsLichTrinh = Array.isArray(rawDsLichTrinh) ? rawDsLichTrinh : []
 
     const [mo, setMo] = useState(false)
     const [sua, setSua] = useState<any>(null)

@@ -1,4 +1,4 @@
-﻿export default [
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -43,6 +43,7 @@
 		path: '/th06',
 		name: 'TH06',
 		icon: 'EnvironmentOutlined',
+		component: './TH06/layout',
 		routes: [
 			{
 				path: '/th06/trang-chu',
