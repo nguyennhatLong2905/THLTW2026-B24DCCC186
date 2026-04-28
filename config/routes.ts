@@ -1,4 +1,4 @@
-﻿export default [
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -41,6 +41,39 @@
 		name: 'TodoList',
 		icon: 'OrderedListOutlined',
 		component: './TodoList',
+	},
+
+	{
+		name: 'Sức Khỏe',
+		path: '/fitness',
+		icon: 'HeartOutlined',
+		routes: [
+			{
+				name: 'Dashboard',
+				path: 'dashboard',
+				component: './FitnessApp/Dashboard',
+			},
+			{
+				name: 'Nhật Ký Tập Luyện',
+				path: 'workouts',
+				component: './FitnessApp/WorkoutLog',
+			},
+			{
+				name: 'Chỉ Số Sức Khỏe',
+				path: 'health-metrics',
+				component: './FitnessApp/HealthMetrics',
+			},
+			{
+				name: 'Mục Tiêu',
+				path: 'goals',
+				component: './FitnessApp/GoalManagement',
+			},
+			{
+				name: 'Bài Tập',
+				path: 'exercises',
+				component: './FitnessApp/ExerciseLibrary',
+			},
+		],
 	},
 
 	// DANH MUC HE THONG
