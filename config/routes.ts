@@ -1,4 +1,4 @@
-﻿export default [
+export default [
 	{
 		path: '/user',
 		layout: false,
@@ -16,8 +16,7 @@
 		],
 	},
 
-	///////////////////////////////////
-	// DEFAULT MENU
+
 	{
 		path: '/dashboard',
 		name: 'Dashboard',
@@ -43,19 +42,30 @@
 		component: './TodoList',
 	},
 
-	// DANH MUC HE THONG
-	// {
-	// 	name: 'DanhMuc',
-	// 	path: '/danh-muc',
-	// 	icon: 'copy',
-	// 	routes: [
-	// 		{
-	// 			name: 'ChucVu',
-	// 			path: 'chuc-vu',
-	// 			component: './DanhMuc/ChucVu',
-	// 		},
-	// 	],
-	// },
+	{
+		path: '/quan-ly-cong-viec',
+		name: 'Quản Lý Công Việc',
+		icon: 'ProjectOutlined',
+		routes: [
+			{
+				path: 'dashboard',
+				name: 'Dashboard',
+				component: './QuanLyCongViec/Dashboard',
+			},
+			{
+				path: 'kanban',
+				name: 'Kanban Board',
+				component: './QuanLyCongViec/Kanban',
+			},
+			{
+				path: 'danh-sach',
+				name: 'Danh Sách',
+				component: './QuanLyCongViec/DanhSach',
+			},
+		],
+	},
+
+
 
 	{
 		path: '/notification',
